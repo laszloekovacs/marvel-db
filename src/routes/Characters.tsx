@@ -1,78 +1,65 @@
-import React, { Suspense, useMemo } from 'react'
-
 import {
 	Await,
 	defer,
 	Link,
 	LoaderFunction,
+	useAsyncValue,
 	useLoaderData
 } from 'react-router-dom'
 import { getApiKey } from '../crypto'
 import { getBaseUrl } from '../env'
-import { generatePageNumbers } from '../util'
+import { Suspense } from 'react'
 
 export default function Characters() {
-	const characters = useLoaderData()
-
-	const pageNumbers = useMemo(
-		() => generatePageNumbers(characters.data.total, 1, 20),
-		[characters.data.total]
-	)
+	const data = useLoaderData() as Awaited<{ characters: CharactersSchema }>
 
 	return (
 		<div>
-			<h2>characters</h2>
-
-			<Suspense fallback={<div>Loading...</div>}>
-				<Await resolve={characters}>
-					{(characters: any) => (
-						<div>
-							<ul>
-								{characters.data.results.map(character => (
-									<li key={character.id}>
-										<Link to={`/character/${character.id}`}>
-											{character.name}
-										</Link>
-									</li>
-								))}
-							</ul>
-						</div>
-					)}
-				</Await>
-			</Suspense>
-			<PageNumbers pageNumbers={pageNumbers} />
+			<h2 className='text-2xl text-red-500'>characters</h2>
+			<div>
+				<Suspense fallback={<div>Loading...</div>}>
+					<Await resolve={data.characters} errorElement={<div>Error</div>}>
+						<CharacterTable />
+					</Await>
+				</Suspense>
+			</div>
 		</div>
 	)
 }
 
-const loader: LoaderFunction = async ({ request }) => {
-	const page = new URL(request.url).searchParams.get('page') || 0
+const CharacterTable = () => {
+	const { data } = useAsyncValue() as CharactersSchema
 
-	const offset = page ? (parseInt(page) - 1) * 20 : 0
+	return (
+		<div>
+			<ul>
+				{data.results.map((character: any) => (
+					<li key={character.id} className='p-2'>
+						<Link to={`/character/${character.id}`}>{character.name}</Link>
+					</li>
+				))}
+			</ul>
+		</div>
+	)
+}
 
-	const url =
-		getBaseUrl() + '/characters?apikey=' + getApiKey() + '&offset=' + offset
+const loader: LoaderFunction = async ({ params }) => {
+	const offset = params.page ? (parseInt(params.page) - 1) * 20 : undefined
 
-	const response = await fetch(url)
-	const data = await response.json()
+	const url = new URL(getBaseUrl())
+	url.pathname = '/v1/public/characters'
 
-	return data
+	url.searchParams.set('apikey', getApiKey())
+
+	if (offset) {
+		url.searchParams.set('offset', offset.toString())
+	}
+
+	return defer({ characters: fetch(url).then(res => res.json()) })
 }
 
 export const CharactersRoute = {
 	path: 'characters',
 	element: <Characters />,
 	loader
-}
-
-export const PageNumbers = ({ pageNumbers }: { pageNumbers: number[] }) => {
-	return (
-		<ul className='flex flex-row flex-wrap'>
-			{pageNumbers.map(num => (
-				<li key={num} className='border-2 min-w-8 text-center'>
-					<Link to={`/characters?page=${num}`}>{num}</Link>
-				</li>
-			))}
-		</ul>
-	)
 }

@@ -1,5 +1,5 @@
-declare type charactersSchema = {
-	code: string
+declare type CharactersSchema = {
+	code: number
 	status: string
 	data: {
 		offset: number
@@ -10,11 +10,11 @@ declare type charactersSchema = {
 			{
 				id: number
 				name: string
+				description: string
 				thumbnail: {
 					path: string
 					extension: string
 				}
-				resourceURI: string
 			}
 		]
 	}
