@@ -4,12 +4,21 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Root from './routes/Root'
 import { KeygenRoute } from './routes/Keygen'
 import { HomeRoute } from './routes/Home'
+import { CharactersRoute } from './routes/Characters'
+import { CharacterRoute } from './routes/Character'
+import { ComicsRoute } from './routes/Comics'
 
 const router = createBrowserRouter([
 	{
 		path: '/',
 		element: <Root />,
-		children: [KeygenRoute, HomeRoute]
+		children: [
+			KeygenRoute,
+			HomeRoute,
+			CharactersRoute,
+			CharacterRoute,
+			ComicsRoute
+		]
 	}
 ])
 

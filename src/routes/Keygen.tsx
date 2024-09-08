@@ -1,4 +1,4 @@
-import { ActionFunctionArgs, Form, useActionData } from 'react-router-dom'
+import { ActionFunctionArgs, Form, Link, useActionData } from 'react-router-dom'
 import { getSecret, encodeAES, decodeAES } from '../crypto'
 
 export default function Keygen() {
@@ -7,6 +7,7 @@ export default function Keygen() {
 	return (
 		<div>
 			<h2 className='text-2xl text-red-500'>Keygen</h2>
+			<Link to='/'>home</Link>
 			<Form method='post'>
 				<input
 					required
