@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const fetcher = (url: string) => fetch(url).then(res => res.json())
 
 export default function Comics() {
-	const url = getBaseUrl() + '/comics?apikey=' + getApiKey()
+	const url = getBaseUrl() + '/v1/public/comics?apikey=' + getApiKey()
 	const { data, error, isLoading } = useSWR(url, fetcher)
 
 	if (error) return <div>Failed to load</div>
