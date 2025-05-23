@@ -1,5 +1,7 @@
 # Marvel db 
 a frontend for marvel comics database
+http://gateway.marvel.com/v1/public/
+
 
 ## Getting Started
 
@@ -26,11 +28,13 @@ a frontend for marvel comics database
     bun run dev
     ```
 
+
 ## Resources
 
 - [Marvel Developer Portal](https://developer.marvel.com/)
-- [SWR Documentation](https://swr.vercel.app/docs/getting-started)
+- [SWR Documentation](https://swr.vercel.app/docs)
 - [TanStack Router](https://tanstack.com/router/latest/docs)
+
 
 ## License
 

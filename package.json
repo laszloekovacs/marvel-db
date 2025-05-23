@@ -4,10 +4,10 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"dev": "vite",
-		"build": "tsc && vite build",
-		"preview": "vite preview",
-		"test": "vitest"
+		"dev": "bunx vite",
+		"build": "bunx vite build",
+		"preview": "bunx vite preview",
+		"test": "bunx vitest"
 	},
 	"dependencies": {
 		"@tanstack/react-router": "^1.120.7",
