@@ -11,14 +11,14 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as ApitestImport } from './routes/apitest'
+import { Route as SomethingImport } from './routes/something'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
 
-const ApitestRoute = ApitestImport.update({
-  id: '/apitest',
-  path: '/apitest',
+const SomethingRoute = SomethingImport.update({
+  id: '/something',
+  path: '/something',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -39,11 +39,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/apitest': {
-      id: '/apitest'
-      path: '/apitest'
-      fullPath: '/apitest'
-      preLoaderRoute: typeof ApitestImport
+    '/something': {
+      id: '/something'
+      path: '/something'
+      fullPath: '/something'
+      preLoaderRoute: typeof SomethingImport
       parentRoute: typeof rootRoute
     }
   }
@@ -53,37 +53,37 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/apitest': typeof ApitestRoute
+  '/something': typeof SomethingRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/apitest': typeof ApitestRoute
+  '/something': typeof SomethingRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/apitest': typeof ApitestRoute
+  '/something': typeof SomethingRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/apitest'
+  fullPaths: '/' | '/something'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/apitest'
-  id: '__root__' | '/' | '/apitest'
+  to: '/' | '/something'
+  id: '__root__' | '/' | '/something'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ApitestRoute: typeof ApitestRoute
+  SomethingRoute: typeof SomethingRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ApitestRoute: ApitestRoute,
+  SomethingRoute: SomethingRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,14 +97,14 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/apitest"
+        "/something"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/apitest": {
-      "filePath": "apitest.tsx"
+    "/something": {
+      "filePath": "something.tsx"
     }
   }
 }
