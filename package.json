@@ -10,11 +10,15 @@
 		"test": "vitest"
 	},
 	"dependencies": {
+		"@tanstack/react-router": "^1.120.7",
+		"@tanstack/react-router-devtools": "^1.120.7",
+		"@vitejs/plugin-react": "^4.5.0",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
 		"swr": "^2.3.3"
 	},
 	"devDependencies": {
+		"@tanstack/router-plugin": "^1.120.7",
 		"@types/bun": "^1.2.14",
 		"@types/crypto-js": "^4.2.2",
 		"biome": "^0.3.3",
