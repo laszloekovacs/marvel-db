@@ -1,6 +1,11 @@
+import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
-export const ApiTestPage = () => {
+export const Route = createFileRoute("/apitest")({
+	component: RouteComponent,
+});
+
+function RouteComponent() {
 	const [url, setUrl] = useState<string>();
 	const [data, setData] = useState<object>({});
 
@@ -24,4 +29,4 @@ export const ApiTestPage = () => {
 			</button>
 		</div>
 	);
-};
+}
