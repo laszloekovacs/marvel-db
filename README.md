@@ -1,7 +1,6 @@
 # Marvel db 
 a frontend for marvel comics database
 
-
 ## Getting Started
 
 1. Clone the repository:
@@ -33,7 +32,8 @@ a frontend for marvel comics database
 - [SWR Documentation](https://swr.vercel.app/docs/getting-started)
 - [TanStack Router](https://tanstack.com/router/latest/docs)
 
-
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [BSD 3-Clause License](https://opensource.org/licenses/BSD-3-Clause).
+
+**Data provided by Marvel. © 2014 Marvel**
