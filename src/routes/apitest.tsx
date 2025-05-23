@@ -6,27 +6,43 @@ export const Route = createFileRoute("/apitest")({
 });
 
 function RouteComponent() {
-	const [url, setUrl] = useState<string>();
+	const [url, setUrl] = useState<string>("");
 	const [data, setData] = useState<object>({});
+	const [error, setError] = useState<object>({});
+	const base = "http://gateway.marvel.com/v1/public/";
+	const key = `?apikey=${import.meta.env.VITE_MARVEL_API_KEY}`;
 
 	async function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
-		const base = "";
-		const key = import.meta.env.VITE_MARVEL_API_KEY;
-
-		const res = await fetch(`${base + url}?apikey=${key}`);
-		const data = await res.json();
-
-		setData(data);
+		try {
+			const res = await fetch(`${base + url}?apikey=${key}`);
+			const data = await res.json();
+			setData(data);
+		} catch (error: unknown) {
+			setError(error as object);
+		}
 	}
 
 	return (
 		<div>
-			{url && <p>{url}</p>}
+			<p>
+				<span>{base}</span>
+				<span>{url ? <span>{url}</span> : <span>_</span>}</span>
+				<span>{key}</span>
+			</p>
 
 			<input name="url" value={url} onChange={(e) => setUrl(e.target.value)} />
 			<button type="button" onClick={handleSubmit}>
 				send
 			</button>
+			<hr />
+			<div>
+				<p>data</p>
+				<pre>{JSON.stringify(data)}</pre>
+			</div>
+			<div>
+				<p>error</p>
+				<pre>{JSON.stringify(error)}</pre>
+			</div>
 		</div>
 	);
 }
