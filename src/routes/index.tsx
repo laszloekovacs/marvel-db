@@ -1,21 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { MARVEL_API_PUBLIC_KEY } from "../pubkey";
+import { BASE_URL } from "../pubkey";
 
 export const Route = createFileRoute("/")({
 	component: RouteComponent,
 });
 
 function RouteComponent() {
-	const [url, setUrl] = useState<string>("");
+	const [slug, setUrl] = useState<string>("");
 	const [data, setData] = useState<object>({});
 	const [error, setError] = useState<object>({});
-	const base = "http://gateway.marvel.com/v1/public/";
-	const key = `?apikey=${MARVEL_API_PUBLIC_KEY}`;
 
 	async function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
 		try {
-			const res = await fetch(`${base + url}?apikey=${key}`);
+			const url = `${BASE_URL}${slug}?apikey=${MARVEL_API_PUBLIC_KEY}`;
+
+			const res = await fetch(url);
 			const data = await res.json();
 			setData(data);
 		} catch (error: unknown) {
@@ -26,12 +27,10 @@ function RouteComponent() {
 	return (
 		<div>
 			<p>
-				<span>{base}</span>
-				<span>{url ? <span>{url}</span> : <span>_</span>}</span>
-				<span>{key}</span>
+				<span>{`${BASE_URL}${slug}?apikey=${MARVEL_API_PUBLIC_KEY}`}</span>
 			</p>
 
-			<input name="url" value={url} onChange={(e) => setUrl(e.target.value)} />
+			<input name="url" value={slug} onChange={(e) => setUrl(e.target.value)} />
 			<button type="button" onClick={handleSubmit}>
 				send
 			</button>
