@@ -1,25 +1,18 @@
 # Marvel db 
-a frontend for marvel comics database api
+a frontend for marvel comics database
 
-## notes
-
-https://developer.marvel.com/
-
-https://swr.vercel.app/docs/getting-started
-
-https://tanstack.com/router/latest/docs/framework/react/routing/installation-with-vite
 
 ## Getting Started
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-username/marvel-db.git
+    git clone https://github.com/laszloekovacs/marvel-db.git
     cd marvel-db
     ```
 
 2. Install dependencies:
     ```bash
-    npm install
+    bun install
     ```
 
 3. Set up your environment variables:
@@ -31,14 +24,15 @@ https://tanstack.com/router/latest/docs/framework/react/routing/installation-wit
 
 4. Start the development server:
     ```bash
-    npm run dev
+    bun run dev
     ```
 
 ## Resources
 
 - [Marvel Developer Portal](https://developer.marvel.com/)
 - [SWR Documentation](https://swr.vercel.app/docs/getting-started)
-- [TanStack Router (React) Installation](https://tanstack.com/router/latest/docs/framework/react/routing/installation-with-vite)
+- [TanStack Router](https://tanstack.com/router/latest/docs)
+
 
 ## License
 

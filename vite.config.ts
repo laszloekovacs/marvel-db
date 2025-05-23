@@ -7,7 +7,6 @@ export default defineConfig({
 		TanStackRouterVite({ target: "react", autoCodeSplitting: true }),
 		react(),
 	],
-
 	server: {
 		port: 3000,
 	},
