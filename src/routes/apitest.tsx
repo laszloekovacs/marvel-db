@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { MARVEL_API_PUBLIC_KEY } from "../pubkey";
 
 export const Route = createFileRoute("/apitest")({
 	component: RouteComponent,
@@ -10,7 +11,7 @@ function RouteComponent() {
 	const [data, setData] = useState<object>({});
 	const [error, setError] = useState<object>({});
 	const base = "http://gateway.marvel.com/v1/public/";
-	const key = `?apikey=${import.meta.env.VITE_MARVEL_API_KEY}`;
+	const key = `?apikey=${MARVEL_API_PUBLIC_KEY}`;
 
 	async function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
 		try {
